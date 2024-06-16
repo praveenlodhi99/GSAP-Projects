@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -22,16 +24,24 @@ body {
     height: 100%;
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #cursor {
     height: 20px;
     width: 20px;
     background-color: white;
+    border-radius: 50%;
     position: fixed;
+    font-size: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center  ;
+    z-index: 9;
+    font-weight: bold;
+
 }
 
 #image {
@@ -41,6 +51,10 @@ body {
     background-color: red;
     background-size: cover;
     
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 1.2), -1px -1px 8px rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/142/751/831/landscape-anime-digital-art-fantasy-art-wallpaper-preview.jpg);
     position: relative;
 }
 
@@ -48,4 +62,14 @@ body {
     height: 100%;
     width: 100%;
     object-fit: contain;
+    border: 2px dotted white;
+    border-radius: 20px;
+}
+
+#overlay {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    position: absolute;
+    z-index: 10 ;
 }
