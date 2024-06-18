@@ -21,7 +21,7 @@ main.addEventListener("mousemove", function (event) {
 imageDiv.addEventListener("mouseenter", function () {
     cursor.textContent = "View More"; // Change cursor content
     gsap.to(cursor, {
-        scale: 3, // Scale cursor up on hover
+        scale: 4, // Scale cursor up on hover
         duration: 0.8,
         ease: "back.out",
         border: "0.2px dashed white",

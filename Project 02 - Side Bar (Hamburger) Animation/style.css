@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Laila', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-image: url('images/VS Wallpaper.jpeg');
+    background-size: cover;
+    color: whitesmoke;
+    height: 100%;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    background-image: url('images/VS Wallpaper.jpeg');   
+}
+
+
+#section{
+    border: 2px solid green;
+}
+#nav{
+    /* border: 2px solid rgb(26, 132, 194); */
+    padding: 0.5em 1.5em;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    width: 100%;
+
+}
+
+#nav i {
+    font-size: 1.5em;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.2em;
+}
+
+#sidebar{
+    width: 20%;
+    position: absolute;
+    top: 0.5em;
+    right: -16.5em;
+    background-color: rgba(255, 255, 255, 0.026);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 3.5em 1.5em;
+    box-shadow: 2px 3px 6px rgb(255, 255, 255);
+}
+
+#sidebar li {
+    margin: 1em 0px;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0.5px;
+    font-size: 1.2em;
+}
+
+#sidebar ul {
+    list-style-type: none;
+}
+
+#sidebar i {
+    font-size: 2.1em;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.2em;
+    position: absolute;
+    top: 0px;
+    right: 24px;
+}
