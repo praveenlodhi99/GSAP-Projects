@@ -12,27 +12,30 @@
     font-family: newFont;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     background-color: black;
     color: #fff;
 }
 
-body {
-    /* background-repeat: no-repeat; */
-    /* background-image: url('images/VS Wallpaper.jpeg'); */
-    /* background-size: cover; */
-    color: whitesmoke;
-    height: 100%;
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-flex-c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .loader {
     width: 100%;
     height: 100vh;
-    border: 1px solid greenyellow;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     padding: 0 1vw;
     gap: 2vw;
@@ -42,6 +45,10 @@ body {
     /* border: 1px solid red; */
     font-size: 12px;
     opacity: 0;
+}
+
+.text-loader {
+    font-size: 1.5rem;
 }
 
 .text-15 {
@@ -64,8 +71,36 @@ body {
     margin-left: 1vw;
 }
 
+.fixed-p {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: orange;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
 
-/* ----------------- loading-part-end ----------------- */
 
+.flex-p-content {
+    transition: all cubic-bezier(0.19, 1, 0.22, 1);
+}
 
-/* ----------------- nav-part-start ----------------- */
+.cntr-p,
+.cntr-p2 {
+    text-align: center;
+    z-index: 999;
+    font-size: 1.2rem;
+}
+
+.nav {
+    margin-top: 3vh;
+    gap: 2vw;
+}
+
+.nav a {
+    text-decoration: underline;
+    z-index: 999;
+    font-size: 1.2rem;
+    color: #fff;
+}
