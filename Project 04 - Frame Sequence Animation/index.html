@@ -5,35 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Including Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
+    <!-- Main container with full width and a background color -->
     <div class="mainbody w-full bg-zinc-900">
+        <!-- Parent container with a large height and background color -->
         <div class="parent relative top-0 left-0 w-full h-[700vh] bg-zinc-800">
+            <!-- Container for the canvas element, sticky to the top of the viewport -->
             <div class="w-full cnav sticky top-0 left-0 h-screen">
+                <!-- Canvas element for rendering the animation frames -->
                 <canvas class="w-2/4 h-2/4" id="frames"></canvas>
             </div>
         </div>
     </div>
 
+    <!-- Including GSAP and ScrollTrigger for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
+        // Getting the canvas and its context for drawing
         const canvas = document.querySelector("canvas");
         const context = canvas.getContext("2d");
 
+        // Frame configuration for animation
         const frames = {
-            currentIndex: 0,
-            maxIndex: 431
+            currentIndex: 0, // Current frame index
+            maxIndex: 431 // Total number of frames
         };
 
-        let imagesLoaded = 0;
-        const images = [];
+        let imagesLoaded = 0; // Counter for loaded images
+        const images = []; // Array to store image elements
 
+        // Function to preload all images
         function preloadImages() {
             for (var i = 1; i <= frames.maxIndex; i++) {
                 const imageUrl = `./frames/frame_${i.toString().padStart(4, "0")}.jpeg`;
@@ -41,6 +50,7 @@
                 img.src = imageUrl;
                 img.onload = () => {
                     imagesLoaded++;
+                    // Start animation once all images are loaded
                     if (imagesLoaded === frames.maxIndex) {
                         loadImage(frames.currentIndex);
                         startAnimation();
@@ -50,13 +60,15 @@
             }
         }
 
+        // Function to load and draw a specific frame
         function loadImage(index) {
             if (index >= 0 && index <= frames.maxIndex) {
                 const img = images[index];
 
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                canvas.width = window.innerWidth; // Set canvas width to window width
+                canvas.height = window.innerHeight; // Set canvas height to window height
 
+                // Calculate scaling to maintain aspect ratio
                 const scaleX = canvas.width / img.width;
                 const scaleY = canvas.height / img.height;
                 const scale = Math.max(scaleX, scaleY);
@@ -64,36 +76,40 @@
                 const newWidth = img.width * scale;
                 const newHeight = img.height * scale;
 
+                // Calculate offset to center the image
                 const offsetX = (canvas.width - newWidth) / 2;
                 const offsetY = (canvas.height - newHeight) / 2;
 
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.imageSmoothingEnabled = true;
-                context.imageSmoothingQuality = "high";
-                context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
-                frames.currentIndex = index;
+                context.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+                context.imageSmoothingEnabled = true; // Enable image smoothing
+                context.imageSmoothingQuality = "high"; // Set high quality for image smoothing
+                context.drawImage(img, offsetX, offsetY, newWidth, newHeight); // Draw image on canvas
+                frames.currentIndex = index; // Update current frame index
             }
         }
 
+        // Function to start the scroll-triggered animation
         function startAnimation() {
             var tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".parent",
-                    start: "top top",
-                    scrub: 2,
-                    end: "bottom bottom",
-                    markers: true,
+                    trigger: ".parent", // Element to trigger the scroll animation
+                    start: "top top", // Start animation when the top of the element hits the top of the viewport
+                    scrub: 2, // Smooth scrubbing
+                    end: "bottom bottom", // End animation when the bottom of the element hits the bottom of the viewport
+                    markers: true, // Show markers for debugging (remove in production)
                 }
-            })
+            });
             
+            // Animation to update the current frame index based on scroll position
             tl.to(frames, {
                 currentIndex: frames.maxIndex,
                 onUpdate: function () {
-                    loadImage(Math.floor(frames.currentIndex));
+                    loadImage(Math.floor(frames.currentIndex)); // Load image for the current frame index
                 }
-            })
+            });
         }
 
+        // Preload all images and start the animation
         preloadImages();
     </script>
 </body>
